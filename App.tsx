@@ -5,8 +5,7 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useEffect, useState, PropsWithChildren } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -16,7 +15,6 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
 import {
   Colors,
   DebugInstructions,
@@ -25,37 +23,21 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+// Import the Logo component
+import Logo from './src/components/Logo'; // Adjust the path based on your project structure
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+// Splash Screen Component
+const SplashScreen = () => (
+  <SafeAreaView style={styles.safeArea}>
+    <View style={styles.container}>
+      <Logo />
+      <Text style={styles.title}>Welcome to Velora</Text>
     </View>
-  );
-}
+  </SafeAreaView>
+);
 
-function App(): React.JSX.Element {
+// Main App Component
+const MainApp = (): React.JSX.Element => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -94,9 +76,74 @@ function App(): React.JSX.Element {
       </ScrollView>
     </SafeAreaView>
   );
+};
+
+// Main App Component that manages the splash screen timeout
+const App = () => {
+  const [isSplashVisible, setSplashVisible] = useState(true);
+
+  useEffect(() => {
+    // Set a timeout to hide the splash screen after 2 seconds
+    const timer = setTimeout(() => {
+      setSplashVisible(false);
+    }, 2000);
+
+    // Cleanup timer if component unmounts before timeout
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Show splash screen or main app based on state
+  return isSplashVisible ? <SplashScreen /> : <MainApp />;
+};
+
+// Section Component as in the existing app
+type SectionProps = PropsWithChildren<{
+  title: string;
+}>;
+
+function Section({ children, title }: SectionProps): React.JSX.Element {
+  const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <View style={styles.sectionContainer}>
+      <Text
+        style={[
+          styles.sectionTitle,
+          {
+            color: isDarkMode ? Colors.white : Colors.black,
+          },
+        ]}>
+        {title}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        {children}
+      </Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 20,
+    color: '#333',
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
