@@ -1,79 +1,72 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Velora
+___
+Velora is a React Native application built with TypeScript, designed to provide a scalable and maintainable codebase. This README outlines the directory structure of the project and guides you on where to place various parts of your code.
 
-# Getting Started
+## Project Structure
+___
+The project is organized into the following main directories within the `src` folder:
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
-
-## Step 1: Start the Metro Server
-
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+```plaintext
+Velora/
+│
+├── android/                # Native Android project files (auto-generated)
+│
+├── ios/                    # Native iOS project files (auto-generated)
+│
+├── src/                    # Main source directory for the app
+│   ├── api/                # API calls and service layer
+│   ├── assets/             # Static assets like images, fonts, etc.
+│   ├── components/         # Reusable UI components
+│   ├── hooks/              # Custom hooks for reusable logic
+│   ├── navigation/         # Navigation configuration and screens
+│   ├── screens/            # Screen components (organized by feature or section)
+│   ├── store/              # State management (e.g., Redux, Zustand)
+│   ├── styles/             # Global styles and theme configurations
+│   └── utils/              # Utility functions and helpers
+│
+├── App.tsx                 # Main App component entry point
+└── index.tsx               # Entry file for the app
 ```
 
-## Step 2: Start your Application
+## Getting Started
+___
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+### Install Dependencies:
 
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```
+npm install
+```
+### Start Metro Server:
+To start the Metro bundler, run:
+```
+npx react-native start
 ```
 
-### For iOS
+### Run on Android:
+To run the app on an Android emulator or connected device:
+- Make sure you have an Android emulator running or a physical device connected.
+- Open a new terminal window.
+- Run the following command: ```npx react-native run-android```.
 
-```bash
-# using npm
-npm run ios
+### Run on iOS:
+To run the app on an iOS simulator or connected device:
+- Make sure you have Xcode installed (for iOS simulator).
+- Open a new terminal window.
+- Run the following command: ```npx react-native run-ios```.
 
-# OR using Yarn
-yarn ios
-```
+## Development
+___
+Follow the project structure outlined above when adding new features or components. Keep the codebase organized and maintainable by adhering to the established architecture.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## Contributing
+___
+To contribute to the Velora project:
 
-## Step 3: Modifying your App
+1. Clone the project to your local machine.
+2. Create a new branch for each feature you're working on. Use the naming convention `feature-<feature-name>` (e.g., `feature-user-authentication`).
+3. Make your changes and commit them to your feature branch.
+4. When your feature is complete, raise a Pull Request (PR) to merge your changes into the `main` branch.
+5. Wait for code review and address any feedback.
 
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Note: A separate `release` branch will be maintained from the `main` branch for managing releases. Do not directly commit to the `release` branch unless instructed to do so by the project maintainers.
